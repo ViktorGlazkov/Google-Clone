@@ -4,6 +4,9 @@
     <title>iGoogle</title>
 </head>
 <body>
-    Here you can find
+<form action="/" method="POST">
+    <input type="text" name="text" required>
+    <input type="submit" value="find">
+</form>
 </body>
 </html>

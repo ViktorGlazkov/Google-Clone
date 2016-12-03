@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <link rel="shortcut icon" href="../../resources/google.ico">
@@ -5,7 +6,15 @@
 </head>
 <body>
 <div>
-    Hello, I'm google
+    <form action="/index" method="POST">
+        <input type="url" name="q" placeholder="url" required>
+        <input type="submit">
+    </form>
+</div>
+<div>
+    <c:if test="${q != null}">
+        ${q}
+    </c:if>
 </div>
 </body>
 </html>
