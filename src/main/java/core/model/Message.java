@@ -14,6 +14,7 @@ public class Message {
         try {
             this.title = reader.document(hit.doc).get("title");
             this.url = reader.document(hit.doc).get("link");
+
         } catch (IOException e) {
             System.err.println("Can't read document:" + hit.doc);
             e.printStackTrace();

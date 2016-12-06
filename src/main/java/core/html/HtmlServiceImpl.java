@@ -56,7 +56,6 @@ public class HtmlServiceImpl implements HtmlService {
     }
 
     private String download(String link) throws IOException, InterruptedException {
-
         IOException ioe;
         int retry = 5;
 
@@ -65,6 +64,7 @@ public class HtmlServiceImpl implements HtmlService {
                 Thread.sleep(1);
                 final Document bDoc = Jsoup.connect(link).userAgent("Mozilla").timeout(30000).get();
                 return bDoc.html();
+
             } catch (final IOException ex) {
                 ioe = ex;
             }
@@ -74,9 +74,9 @@ public class HtmlServiceImpl implements HtmlService {
     }
 
     private Set<String> extractLinks(final String html, final String seed) {
-
         Document document = Jsoup.parse(html, seed);
         Set<String> linksSet = new HashSet<>();
+
         for (Element link : document.select("a")) {
             String strLink = link.attr("abs:href").trim().toLowerCase();
             if (!strLink.isEmpty()) {
