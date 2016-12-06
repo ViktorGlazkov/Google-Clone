@@ -13,12 +13,12 @@ public class IndexController {
 
     @RequestMapping(value = {"/index"}, method = RequestMethod.GET)
     public String getIndexControllers() {
-        return "index_page";
+        return "index";
     }
 
     @RequestMapping(value = {"/index"}, method = RequestMethod.POST)
     public String indexPage(@RequestParam String q, @RequestParam int d) {
         indexerService.index(q, d);
-        return "index_page";
+        return "index";
     }
 }
