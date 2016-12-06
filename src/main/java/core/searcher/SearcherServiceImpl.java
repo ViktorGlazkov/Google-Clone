@@ -24,7 +24,6 @@ public class SearcherServiceImpl implements SearcherService {
 
     @Override
     public List<Message> search(String toSearch) {
-
         List<Message> messageList = new ArrayList<>();
         for(ScoreDoc doc : fuzzySearch(toSearch.toLowerCase())) {
             try {
@@ -53,7 +52,7 @@ public class SearcherServiceImpl implements SearcherService {
         return null;
     }
 
-    private ScoreDoc[] fuzzySearch(final String toSearch, final int limit) throws IOException, ParseException {
+    private ScoreDoc[] fuzzySearch(String toSearch, int limit) throws IOException, ParseException {
         IndexSearcher indexSearcher = new IndexSearcher(indexerService.readIndex());
 
         MultiFieldQueryParser queryParser = new MultiFieldQueryParser(

@@ -27,23 +27,11 @@ public class Crawler {
         return depth;
     }
 
-    public void setDepth(int depth) {
-        this.depth = depth;
-    }
-
     public String getSeed() {
         return seed;
     }
 
-    public void setSeed(String seed) {
-        this.seed = seed;
-    }
-
     public Set<String> getLinks() {
         return links;
-    }
-
-    public void setLinks(Set<String> links) {
-        this.links = links;
     }
 }

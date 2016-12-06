@@ -7,7 +7,7 @@ import org.apache.lucene.index.IndexOptions;
 
 public class DocumentFactory {
 
-    public static Document createWith(final String titleStr, final String bodyStr, String url) {
+    public static Document createWith(String titleStr, String bodyStr, String url) {
         Document document = new Document();
 
         FieldType textIndexedType = new FieldType();

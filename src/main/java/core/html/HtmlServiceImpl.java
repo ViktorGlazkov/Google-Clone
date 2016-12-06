@@ -39,9 +39,9 @@ public class HtmlServiceImpl implements HtmlService {
     }
 
     @Override
-    public String getTitle(final String html) {
-        final Document doc = Jsoup.parse(html);
-        final Elements elements = doc.select("title");
+    public String getTitle(String html) {
+        Document doc = Jsoup.parse(html);
+        Elements elements = doc.select("title");
         if (elements != null && !elements.isEmpty()) {
             return elements.text();
         }
@@ -50,7 +50,7 @@ public class HtmlServiceImpl implements HtmlService {
     }
 
     @Override
-    public String getContent(final String html) {
+    public String getContent(String html) {
         Document doc = Jsoup.parse(html);
         return doc.select("div").text();
     }
@@ -62,10 +62,10 @@ public class HtmlServiceImpl implements HtmlService {
         do {
             try {
                 Thread.sleep(1);
-                final Document bDoc = Jsoup.connect(link).userAgent("Mozilla").timeout(30000).get();
+                Document bDoc = Jsoup.connect(link).userAgent("Mozilla").timeout(30000).get();
                 return bDoc.html();
 
-            } catch (final IOException ex) {
+            } catch (IOException ex) {
                 ioe = ex;
             }
         } while (--retry > 0);
@@ -73,7 +73,7 @@ public class HtmlServiceImpl implements HtmlService {
         throw ioe;
     }
 
-    private Set<String> extractLinks(final String html, final String seed) {
+    private Set<String> extractLinks(String html, String seed) {
         Document document = Jsoup.parse(html, seed);
         Set<String> linksSet = new HashSet<>();
 
