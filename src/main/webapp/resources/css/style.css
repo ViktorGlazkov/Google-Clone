@@ -2,10 +2,32 @@
     text-decoration: none;
 }
 
-.block {
-    background-size: 272px 92px;
+.icon-block {
+    height: 54px;
+    width: 145px;
+    display: table-cell;
+}
+
+.icon {
     height: 44px;
-    width: 120px
+    width: 120px;
+    vertical-align: middle;
+    margin: 0 auto
+}
+
+.search {
+    width: 100%;
+    height: 54px;
+    vertical-align: middle;
+    display:inline-block
+}
+
+.header {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 65px;
+    background-color: #fafafa;
 }
 
 input {
