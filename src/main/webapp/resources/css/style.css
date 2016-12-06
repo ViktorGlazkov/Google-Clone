@@ -1,0 +1,15 @@
+.title a {
+    text-decoration: none;
+}
+
+.block {
+    display: block;
+    background-size: 272px 92px;
+    height: 92px;
+    width: 272px
+}
+
+input {
+    height: 44px;
+    width: 488px;
+}
