@@ -21,6 +21,8 @@ public class IndexerServiceImpl implements IndexerService {
     @Autowired
     private CrawlerService crawlerService;
 
+    private final String path = "./";
+
     @Override
     public void index(String link, int depth) {
         Crawler.getInstance().setParams(depth, link);
@@ -29,7 +31,7 @@ public class IndexerServiceImpl implements IndexerService {
         indexWriterConfig.setOpenMode(IndexWriterConfig.OpenMode.CREATE_OR_APPEND);
 
         try {
-            Directory directory  = FSDirectory.open(Paths.get("./"));
+            Directory directory  = FSDirectory.open(Paths.get(path));
             IndexWriter indexWriter = new IndexWriter(directory, indexWriterConfig);
 
             indexWriter.addDocuments(crawlerService.getDocuments());
@@ -42,7 +44,7 @@ public class IndexerServiceImpl implements IndexerService {
 
     @Override
     public IndexReader readIndex() throws IOException {
-        Directory dir = FSDirectory.open(Paths.get("./"));
+        Directory dir = FSDirectory.open(Paths.get(path));
         return DirectoryReader.open(dir);
     }
 }
