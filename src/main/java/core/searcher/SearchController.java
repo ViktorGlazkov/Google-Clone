@@ -1,5 +1,6 @@
 package core.searcher;
 
+import com.sun.istack.internal.Nullable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,8 +22,11 @@ public class SearchController {
     }
 
     @RequestMapping(value = {"/search"}, method = RequestMethod.GET)
-    public String getSearchControllers(Model model, @RequestParam String q) throws IOException {
-        model.addAttribute("results", searcherService.search(q));
+    public String getSearchControllers(Model model, @Nullable @RequestParam String q) throws IOException {
+        if (q != null && q != "") {
+            model.addAttribute("results", searcherService.search(q));
+        }
+
         return "root";
     }
 }

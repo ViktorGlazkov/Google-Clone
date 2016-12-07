@@ -5,9 +5,7 @@ import core.model.Message;
 import org.apache.lucene.analysis.ru.RussianAnalyzer;
 import org.apache.lucene.queryparser.classic.MultiFieldQueryParser;
 import org.apache.lucene.queryparser.classic.ParseException;
-import org.apache.lucene.search.IndexSearcher;
-import org.apache.lucene.search.ScoreDoc;
-import org.apache.lucene.search.TopDocs;
+import org.apache.lucene.search.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -38,7 +36,6 @@ public class SearcherServiceImpl implements SearcherService {
         return messageList;
     }
 
-    @Override
     public ScoreDoc[] fuzzySearch(String toSearch) {
         try {
             return fuzzySearch(toSearch, DEFAULT_LIMIT);
@@ -59,7 +56,7 @@ public class SearcherServiceImpl implements SearcherService {
                 new String[] {"body", "title"},
                 new RussianAnalyzer());
 
-        TopDocs search = indexSearcher.search(queryParser.parse(toSearch), limit);
+        TopDocs search = indexSearcher.search(queryParser.parse(toSearch), limit, Sort.RELEVANCE);
 
         return search.scoreDocs;
     }
