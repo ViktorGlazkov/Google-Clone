@@ -6,22 +6,27 @@
 <%@include file="/resources/html/head.html" %>
 <body>
 <%@include file="/resources/html/search_form.html" %>
-<br>
-<c:if test="${results != null}">
-    <% for (Message message : (List<Message>) request
-            .getAttribute("results")) { %>
-    <div class="title">
-        <a href=" <%= message.getUrl() %>"><%= message.getTitle() %>
-        </a>
+
+<div class="results-wrapper">
+    <div class="results">
+        <c:if test="${results != null}">
+            <% for (Message message : (List<Message>) request
+                    .getAttribute("results")) { %>
+
+            <br>
+
+            <div class="title">
+                <a href=" <%= message.getUrl() %>"><%= message.getTitle() %>
+                </a>
+            </div>
+
+            <div class="url">
+                <span> <%= message.getUrl() %> </span>
+            </div>
+            <% } %>
+        </c:if>
     </div>
-    <div>
-        <a href=" <%= message.getUrl() %>"><%= message.getUrl() %>
-        </a>
-    </div>
-    <br>
-    <br>
-    <% } %>
-</c:if>
+</div>
 
 </body>
 </html>
