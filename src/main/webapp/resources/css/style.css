@@ -35,7 +35,7 @@
     position: absolute; bottom: 0;
 }
 
-input {
+.search-input {
     height: 44px;
     width: 488px;
 }
@@ -55,9 +55,9 @@ input {
     font-size: 18px;
 }
 
-.url {
+.url a {
     font-size: 14px;
     color: #006621;
-    font-style: normal;
+    text-decoration: none;
 }
 

@@ -12,16 +12,13 @@
         <c:if test="${results != null}">
             <% for (Message message : (List<Message>) request
                     .getAttribute("results")) { %>
-
             <br>
-
             <div class="title">
                 <a href=" <%= message.getUrl() %>"><%= message.getTitle() %>
                 </a>
             </div>
-
             <div class="url">
-                <span> <%= message.getUrl() %> </span>
+                <a href=" <%= message.getUrl() %>"> <%= message.getUrl() %> </a>
             </div>
             <% } %>
         </c:if>
