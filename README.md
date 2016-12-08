@@ -1,12 +1,6 @@
 Implementation of simple Google-clone
 =====================
 
-About: 
------------------------------------
-This app can index web pages and search  
-
-![alt tag](http://http://ongab.ru/media/blog/com/2013-02-26_20-24-45_923315396.jpeg)
-
 Stack of technologies: 
 -----------------------------------
 
