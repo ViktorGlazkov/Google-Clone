@@ -23,7 +23,7 @@ public class SearcherServiceImpl implements SearcherService {
     @Override
     public List<Message> search(String toSearch) {
         List<Message> messageList = new ArrayList<>();
-        for(ScoreDoc doc : fuzzySearch(toSearch.toLowerCase())) {
+        for (ScoreDoc doc : fuzzySearch(toSearch.toLowerCase())) {
             try {
                 messageList.add(new Message(doc, indexerService.readIndex()));
 
@@ -53,7 +53,7 @@ public class SearcherServiceImpl implements SearcherService {
         IndexSearcher indexSearcher = new IndexSearcher(indexerService.readIndex());
 
         MultiFieldQueryParser queryParser = new MultiFieldQueryParser(
-                new String[] {"body", "title"},
+                new String[]{"body", "title"},
                 new RussianAnalyzer());
 
         TopDocs search = indexSearcher.search(queryParser.parse(toSearch), limit, Sort.RELEVANCE);
