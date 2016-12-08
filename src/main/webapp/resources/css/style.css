@@ -5,14 +5,15 @@
 .logo-wrapper {
     height: 58px;
     width: 145px;
-    display: table-cell;
+    display:inline-block
 }
 
-.logo-wrapper .logo {
+.logo {
     height: 44px;
     width: 120px;
     vertical-align: middle;
-    margin: 0 auto
+    margin-left: 13px;
+    margin-bottom: 0px;
 }
 
 .header1 {
@@ -22,6 +23,7 @@
     width: 100%;
     height: 86px;
     background-color: #fafafa;
+    border-bottom: 1px ridge #c2c2c2;
 }
 
 .header1 .header2 {
@@ -33,11 +35,6 @@
     display: table-cell;
     vertical-align: bottom;
     position: absolute; bottom: 0;
-}
-
-.search-input {
-    height: 44px;
-    width: 488px;
 }
 
 .results-wrapper {
@@ -59,5 +56,10 @@
     font-size: 14px;
     color: #006621;
     text-decoration: none;
+}
+
+form {
+    overflow:hidden;
+    display:inline-block
 }
 
