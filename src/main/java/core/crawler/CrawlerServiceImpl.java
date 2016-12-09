@@ -31,11 +31,7 @@ public class CrawlerServiceImpl implements CrawlerService {
 
     private void addInnerLinks() {
         crawler.getLinks().add(crawler.getSeed());
-
-        for (String link : htmlService.getLinks(crawler.getSeed(), crawler.getSeed())) {
-            crawler.getLinks().add(link);
-            addInnerLinks(link, 1);
-        }
+        addInnerLinks(crawler.getSeed(), 0);
     }
 
     private void addInnerLinks(String link, int step) {
