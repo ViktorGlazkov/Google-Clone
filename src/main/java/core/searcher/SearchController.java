@@ -23,7 +23,7 @@ public class SearchController {
 
     @RequestMapping(value = {"/search"}, method = RequestMethod.GET)
     public String getSearchControllers(Model model, @Nullable @RequestParam String q) throws IOException {
-        if (q != null && q != "") {
+        if (q != null && !q.isEmpty()) {
             model.addAttribute("results", searcherService.search(q));
         }
 
