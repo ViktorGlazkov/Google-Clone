@@ -32,8 +32,7 @@ public class HtmlServiceImpl implements HtmlService {
     }
 
     @Override
-    public Set<String> getLinks(String link, String seed) {
-        String html = getHTML(link);
+    public Set<String> getLinks(String html, String seed) {
         Set<String> links = extractLinks(html, seed);
         return links;
     }
@@ -52,7 +51,7 @@ public class HtmlServiceImpl implements HtmlService {
     @Override
     public String getContent(String html) {
         Document doc = Jsoup.parse(html);
-        return doc.select("div").text();
+        return doc.select("body").text();
     }
 
     private String download(String link) throws IOException, InterruptedException {
