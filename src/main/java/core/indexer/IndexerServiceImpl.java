@@ -1,7 +1,6 @@
 package core.indexer;
 
-import core.crawler.Crawler;
-import core.crawler.CrawlerService;
+import core.model.Crawler;
 import org.apache.lucene.analysis.ru.RussianAnalyzer;
 import org.apache.lucene.index.DirectoryReader;
 import org.apache.lucene.index.IndexReader;
@@ -19,7 +18,7 @@ import java.nio.file.Paths;
 public class IndexerServiceImpl implements IndexerService {
 
     @Autowired
-    private CrawlerService crawlerService;
+    private DocumentFactory documentFactory;
 
     private final String path = "./";
 
@@ -31,10 +30,10 @@ public class IndexerServiceImpl implements IndexerService {
         indexWriterConfig.setOpenMode(IndexWriterConfig.OpenMode.CREATE_OR_APPEND);
 
         try {
-            Directory directory  = FSDirectory.open(Paths.get(path));
+            Directory directory = FSDirectory.open(Paths.get("../java/core/indexer"));
             IndexWriter indexWriter = new IndexWriter(directory, indexWriterConfig);
 
-            indexWriter.addDocuments(crawlerService.getDocuments());
+            indexWriter.addDocuments(documentFactory.getDocuments());
             indexWriter.close();
 
         } catch (IOException e) {
@@ -44,7 +43,7 @@ public class IndexerServiceImpl implements IndexerService {
 
     @Override
     public IndexReader readIndex() throws IOException {
-        Directory dir = FSDirectory.open(Paths.get(path));
+        Directory dir = FSDirectory.open(Paths.get("../java/core/indexer"));
         return DirectoryReader.open(dir);
     }
 }
