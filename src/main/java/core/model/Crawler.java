@@ -1,4 +1,4 @@
-package core.crawler;
+package core.model;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -14,6 +14,7 @@ public class Crawler {
         this.depth = depth;
         this.seed = seed;
         this.links = new HashSet<>();
+        this.links.add(seed);
     }
 
     public static Crawler getInstance() {
