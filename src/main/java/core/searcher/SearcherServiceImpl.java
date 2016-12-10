@@ -23,7 +23,7 @@ public class SearcherServiceImpl implements SearcherService {
     @Override
     public List<Message> search(String toSearch) {
         List<Message> messageList = new ArrayList<>();
-        for (ScoreDoc doc : fuzzySearch(toSearch.toLowerCase())) {
+        for (ScoreDoc doc : fuzzySearch(toSearch)) {
             try {
                 messageList.add(new Message(doc, indexerService.readIndex()));
 
@@ -36,13 +36,11 @@ public class SearcherServiceImpl implements SearcherService {
         return messageList;
     }
 
-    public ScoreDoc[] fuzzySearch(String toSearch) {
+    private ScoreDoc[] fuzzySearch(String toSearch) {
         try {
             return fuzzySearch(toSearch, DEFAULT_LIMIT);
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ParseException e) {
+        } catch (IOException | ParseException e) {
             e.printStackTrace();
         }
 
