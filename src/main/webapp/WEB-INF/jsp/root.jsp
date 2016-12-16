@@ -3,12 +3,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-<%@include file="/resources/html/head.html" %>
-<%@include file="/resources/html/header.html" %>
-<%@include file="/resources/html/logo.html" %>
-<%@include file="/resources/html/input.html" %>
+<%@include file="/resources/head.html" %>
+<%@include file="/resources/header/header.html" %>
+<%@include file="/resources/logo/logo.html" %>
+<%@include file="/resources/input/input.html" %>
+<%@include file="/resources/footer/footer.html" %>
+
 <%--<%@include file="/resources/html/index.html" %>--%>
-<%--<body>--%>
+<body>
 <%--<%@include file="/resources/html/search_form.html" %>--%>
 
 <%--<div class="results-wrapper">--%>
