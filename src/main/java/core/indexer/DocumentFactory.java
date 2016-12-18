@@ -12,6 +12,8 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.util.Objects.isNull;
+
 @Component
 public class DocumentFactory {
     @Autowired
@@ -52,11 +54,11 @@ public class DocumentFactory {
         String title = htmlService.getTitle(html);
         String content = htmlService.getContent(html);
 
-        if (title == null) {
+        if (isNull(title)) {
             title = "";
         }
 
-        if (content == null) {
+        if (isNull(content)) {
             content = "";
         }
 
