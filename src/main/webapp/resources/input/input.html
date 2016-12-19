@@ -1,9 +1,15 @@
 <div class="input-row">
-    <div class="input-block">
-        <img class="input-image" src="../../resources/input/input.png"/>
-        <input class="search-input" type="text">
-    </div>
-    <div class="button-block">
-        <input class="search-button" type="submit" value="Google Search">
-    </div>
+    <form class="center" action="/search" method="GET">
+        <div class="input-block">
+            <input class="search-input" type="text" name="q">
+            <input type="hidden" name="p" value="1">
+            <img class="input-image" src="../../resources/input/microphone.png"/>
+        </div>
+        <div class="button-block">
+            <input class="search-button" id="search-button" type="submit" value="Google Search">
+            <a class="icon-link" href="/">
+                <input class="search-button" id="doodle-button" type="button" value="I'm Feeling Lucky">
+            </a>
+        </div>
+    </form>
 </div>
