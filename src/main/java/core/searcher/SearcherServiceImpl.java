@@ -18,12 +18,18 @@ public class SearcherServiceImpl implements SearcherService {
     @Autowired
     private IndexerService indexerService;
 
+    @Autowired
+    private IndexSearcher indexSearcher;
+
+    @Autowired
+    private MultiFieldQueryParser queryParser;
+
     private static final int DEFAULT_LIMIT = 10;
 
     @Override
-    public List<Message> search(String toSearch) {
+    public List<Message> search(int page, String toSearch) {
         List<Message> messageList = new ArrayList<>();
-        for (ScoreDoc doc : fuzzySearch(toSearch)) {
+        for (ScoreDoc doc : fuzzySearch(page, toSearch)) {
             try {
                 messageList.add(new Message(doc, indexerService.readIndex()));
 
@@ -36,9 +42,20 @@ public class SearcherServiceImpl implements SearcherService {
         return messageList;
     }
 
-    private ScoreDoc[] fuzzySearch(String toSearch) {
+    @Override
+    public int count(String toSearch) {
         try {
-            return fuzzySearch(toSearch, DEFAULT_LIMIT);
+            return indexSearcher.count(queryParser.parse(toSearch));
+        } catch (IOException | ParseException e) {
+            e.printStackTrace();
+        }
+
+        return -1;
+    }
+
+    private ScoreDoc[] fuzzySearch(int page, String toSearch) {
+        try {
+            return fuzzySearch(page, toSearch, DEFAULT_LIMIT);
 
         } catch (IOException | ParseException e) {
             e.printStackTrace();
@@ -47,14 +64,17 @@ public class SearcherServiceImpl implements SearcherService {
         return null;
     }
 
-    private ScoreDoc[] fuzzySearch(String toSearch, int limit) throws IOException, ParseException {
-        IndexSearcher indexSearcher = new IndexSearcher(indexerService.readIndex());
+    private ScoreDoc[] fuzzySearch(int page, String toSearch, int limit) throws IOException, ParseException {
 
-        MultiFieldQueryParser queryParser = new MultiFieldQueryParser(
-                new String[]{"body", "title"},
-                new RussianAnalyzer());
 
-        TopDocs search = indexSearcher.search(queryParser.parse(toSearch), limit, Sort.RELEVANCE);
+
+        TopScoreDocCollector collector = TopScoreDocCollector.create(9999);
+        int startIndex = (page-1) * limit;
+        Query query = queryParser.parse(toSearch);
+        indexSearcher.search(query, collector);
+        TopDocs search = collector.topDocs(startIndex, limit);
+
+//        TopDocs search = indexSearcher.search(queryParser.parse(toSearch), limit, Sort.RELEVANCE);
 
         return search.scoreDocs;
     }

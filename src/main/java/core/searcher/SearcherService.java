@@ -5,5 +5,7 @@ import core.model.Message;
 import java.util.List;
 
 public interface SearcherService {
-    List<Message> search(String toSearch);
+    List<Message> search(int page, String toSearch);
+
+    int count(String toSearch);
 }
