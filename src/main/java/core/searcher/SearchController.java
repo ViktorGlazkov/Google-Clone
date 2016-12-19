@@ -17,16 +17,19 @@ public class SearchController {
     SearcherService searcherService;
 
     @RequestMapping(value = {"/"}, method = RequestMethod.GET)
-    public String getSearchControllers() {
+    public String rootController() {
         return "root";
     }
 
     @RequestMapping(value = {"/search"}, method = RequestMethod.GET)
-    public String getSearchControllers(Model model, @Nullable @RequestParam String q) throws IOException {
+    public String searchController(Model model, @Nullable @RequestParam int p, @Nullable @RequestParam String q) throws IOException {
         if (q != null && !q.isEmpty()) {
-            model.addAttribute("results", searcherService.search(q));
+            model.addAttribute("results", searcherService.search(p, q));
+            model.addAttribute("count", searcherService.count(q));
+            model.addAttribute("page", p);
+            model.addAttribute("query", q);
         }
 
-        return "root";
+        return "result";
     }
 }
