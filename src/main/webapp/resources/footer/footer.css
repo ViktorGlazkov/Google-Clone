@@ -1,6 +1,42 @@
 .footer-row {
-    width: 100%;
-    height: 30px;
-    background-color:  #ff212e;
-    color: #737373;
+    margin-left: -15px;
+    bottom: 0;
+    height: 41px;
+    position: absolute;
+    width: 101%;
+    display:inline-block;
+}
+
+.footer {
+    background-color: #f2f2f2;
+    border-top: 1px solid #e4e4e4;
+    line-height: 35px;
+    vertical-align: middle;
+}
+
+.footer-field-left {
+    color: #666;
+    height: 40px;
+    font-size: 13px;
+    vertical-align: middle;
+    text-decoration: none;
+    padding-left: 27px;
+    font-family: arial, sans-serif;
+}
+
+.footer-field-right {
+    float: right;
+    color: #666;
+    font-size: 13px;
+
+    height: 40px;
+    vertical-align: middle;
+    text-decoration: none;
+    padding-right: 27px;
+    font-family: arial, sans-serif;
+}
+
+.footer-field-left:hover,
+.footer-field-right:hover{
+    text-decoration: underline;
 }
