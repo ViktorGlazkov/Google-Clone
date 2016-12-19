@@ -41,7 +41,7 @@
 
 <div class="results-wrapper">
     <div class="results">
-        <c:if test="${results != null}">
+        <c:if test="${results.size() > 0}">
             <br>
             <div class="count">About ${count} results</div>
             <% for (Message message : (List<Message>) request
@@ -68,6 +68,14 @@
                        disabled </c:if>>
             </form>
         </c:if>
+        <c:if test="${results.size() == 0}">
+            <br>
+            <span>
+                Your search - ${query} - did not match any documents.
+            </span>
+        </c:if>
+
+
     </div>
 </div>
 </body>
